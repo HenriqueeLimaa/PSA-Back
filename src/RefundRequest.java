@@ -3,12 +3,20 @@ public class RefundRequest {
     private String desc;
     private double value;
     private String date;
+    private UserS u;
+    private Status s;
 
-    public RefundRequest(int id, String desc, double value, String date) {
+    public enum Status{
+        ACEITO, RECUSADO, PENDENTE;
+    }
+
+    public RefundRequest(int id, String desc, double value, String date, UserS u,Status s ) {
         this.id = id;
         this.desc = desc;
         this.value = value;
         this.date = date;
+        this.u = u;
+        s = Status.PENDENTE;
     }
 
     public int getId() {
@@ -43,6 +51,13 @@ public class RefundRequest {
         this.date = date;
     }
 
-    
+    public void setStatus(String st){
+        if(st.equals("ACEITO"))
+        s = Status.ACEITO;
+        if(st.equals("RECUSADO"))
+        s = Status.RECUSADO;
+        if(st.equals("PENDENTE"))
+        s = Status.PENDENTE;
+    }
     
 }

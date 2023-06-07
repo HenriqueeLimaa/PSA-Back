@@ -2,6 +2,10 @@ public class UserS {
     private int id;
     private String name;
 
+    public enum Cargo{
+        GERENTE, FUNCIONARIO;
+    }
+
     public UserS(int id, String name) {
         this.id = id;
         this.name = name;
