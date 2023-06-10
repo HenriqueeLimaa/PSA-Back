@@ -1,8 +1,21 @@
+package app;
+
+import java.sql.Date;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class RefundRequest {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String desc;
     private double value;
-    private String date;
+    private Date date;
     private UserS u;
     private Status s;
 
@@ -10,8 +23,7 @@ public class RefundRequest {
         ACEITO, RECUSADO, PENDENTE;
     }
 
-    public RefundRequest(int id, String desc, double value, String date, UserS u,Status s ) {
-        this.id = id;
+    public RefundRequest(String desc, double value, Date date, UserS u,Status s ) {
         this.desc = desc;
         this.value = value;
         this.date = date;
@@ -43,12 +55,20 @@ public class RefundRequest {
         this.value = value;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Status getStatus(){
+        return s;
+    }
+
+    public UserS getUser(){
+        return u;
     }
 
     public void setStatus(String st){

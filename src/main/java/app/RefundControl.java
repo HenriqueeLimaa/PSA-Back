@@ -1,3 +1,5 @@
+package app;
+
 import java.util.ArrayList;
 
 public class RefundControl {
@@ -13,6 +15,10 @@ public class RefundControl {
 
     public void Refuse(RefundRequest r){
         r.setStatus("RECUSADO");
+    }
+
+    public ArrayList<RefundRequest> getAllRequests(){
+        return ref;
     }
 
 
