@@ -1,35 +1,32 @@
 package app;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Component;
 
 
-@SpringBootApplication
-public class Application {
+@Component
+public class Application implements CommandLineRunner{
 
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private final UsersRepository ur;
+    private final RefundRepository rr;
 
-    public static void main(String[] args) {   
-    SpringApplication.run(Application.class, args);
+    @Autowired
+    public Application(UsersRepository ur, RefundRepository rr){
+        this.ur = ur;
+        this.rr = rr;
     }
 
-    public CommandLineRunner demo(UsersRepository ur){
-        return (args) ->{
 
-        ur.save(new UserS("Iago", "FUNCIONARIO"));
-        ur.save(new UserS("Henrique", "GERENTE"));
-        ur.save(new UserS("Eduardo", "Funcionario"));
+    @Override
+    public void run(String... strings) throws Exception{
+        this.ur.save(new UserS("Iago", "FUNCIONARIO"));
+        this.ur.save(new UserS("Henrique", "GERENTE"));
+        this.ur.save(new UserS("Eduardo", "FUNCIONARIO"));
+        
 
-
-        log.info("All Users");
-        log.info("------------------");
-        for(UserS us: ur.findAll()){
-            log.info(us.toString());
-        }
-        };
+        this.rr.save(new RefundRequest("Teste", 250, "12-06-2023", 1, "PENDENTE"));
     }
 
 }

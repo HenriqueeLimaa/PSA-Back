@@ -12,22 +12,23 @@ public class UserS {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private Cargo c;
+    private String role;
 
-    public enum Cargo{
-        GERENTE, FUNCIONARIO;
-    }
 
-    public UserS(String name, String c) {
+    protected UserS(){}
+
+    public UserS(String name, String role) {
         this.name = name;
-        if(c.equals("GERENTE"))
-        this.c = Cargo.GERENTE;
-        if(c.equals("FUNCIONARIO"))
-        this.c = Cargo.FUNCIONARIO;
+        this.role = role;
     }
 
+    @Override
     public String toString(){
-        return id + "\n Nome: " + name + "\n Cargo: " + c;
+        return "user{" +
+                "\nid=" + id +
+                "\nname=" + name +
+                "\nrole=" + role +
+                "\n}";
     }
 
     public int getId() {
@@ -46,8 +47,8 @@ public class UserS {
         this.name = name;
     }
 
-    public Cargo getCargo(){
-        return c;
+    public String getRole(){
+        return role;
     }
 
 }

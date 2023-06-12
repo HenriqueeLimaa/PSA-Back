@@ -1,7 +1,5 @@
 package app;
 
-import java.sql.Date;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,22 +11,20 @@ public class RefundRequest {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String desc;
+    private String description;
     private double value;
-    private Date date;
-    private UserS u;
-    private Status s;
+    private String date;
+    private int uid;
+    private String status;
 
-    public enum Status{
-        ACEITO, RECUSADO, PENDENTE;
-    }
+    protected RefundRequest(){}
 
-    public RefundRequest(String desc, double value, Date date, UserS u,Status s ) {
-        this.desc = desc;
+    public RefundRequest(String description, double value, String date, int uid,String status ) {
+        this.description = description;
         this.value = value;
         this.date = date;
-        this.u = u;
-        s = Status.PENDENTE;
+        this.uid = uid;
+        this.status = status;
     }
 
     public int getId() {
@@ -40,11 +36,11 @@ public class RefundRequest {
     }
 
     public String getDesc() {
-        return desc;
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDesc(String description) {
+        this.description = description;
     }
 
     public double getValue() {
@@ -55,29 +51,29 @@ public class RefundRequest {
         this.value = value;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public Status getStatus(){
-        return s;
+    public String getStatus(){
+        return status;
     }
 
-    public UserS getUser(){
-        return u;
+    public int getUser(){
+        return uid;
     }
 
     public void setStatus(String st){
         if(st.equals("ACEITO"))
-        s = Status.ACEITO;
+        status = "ACEITO";
         if(st.equals("RECUSADO"))
-        s = Status.RECUSADO;
+        status = "RECUSADO";
         if(st.equals("PENDENTE"))
-        s = Status.PENDENTE;
+        status = "PENDENTE";
     }
     
 }
