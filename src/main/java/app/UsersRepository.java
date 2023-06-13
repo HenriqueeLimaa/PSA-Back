@@ -1,9 +1,10 @@
 package app;
 
 import org.springframework.data.repository.CrudRepository;
-import java.util.List;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 
+@RepositoryRestResource
 public interface UsersRepository extends CrudRepository<UserS, Integer>{
     
     UserS findById(int id);

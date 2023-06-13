@@ -18,8 +18,16 @@ public class UserS {
     protected UserS(){}
 
     public UserS(String name, String role) {
+        System.out.println(role);
+              System.out.println(name);
         this.name = name;
+        if(role.equals("FUNCIONARIO")) {
         this.role = role;
+        } else if(role.equals("GERENTE")) {
+        this.role = role;
+        } else {
+            throw new IllegalArgumentException("Invalid role");
+        }
     }
 
     @Override
