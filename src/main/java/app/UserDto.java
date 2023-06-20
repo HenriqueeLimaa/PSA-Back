@@ -1,5 +1,7 @@
 package app;
 
+import app.services.UserService;
+
 public class UserDto {
 
     private String name;
@@ -50,8 +52,8 @@ public class UserDto {
         this.username = username;
     }
 
-    public UserS toUserS() {
-        UserS userS = new UserS();
+    public UserService toUserS() {
+        UserService userS = new UserService();
         userS.setName(name);
         userS.setRole(role);
         userS.setPassword(password);

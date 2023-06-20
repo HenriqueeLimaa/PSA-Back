@@ -1,6 +1,9 @@
 package app;
 
 
+import app.repository.RefundRepository;
+import app.repository.UsersRepository;
+import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -22,9 +25,9 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... strings) throws Exception{
-        this.ur.save(new UserS("Iago", "FUNCIONARIO"));
-        this.ur.save(new UserS("Henrique", "GERENTE"));
-        this.ur.save(new UserS("Eduardo", "FUNCIONARIO"));
+        this.ur.save(new UserService("Iago", "FUNCIONARIO"));
+        this.ur.save(new UserService("Henrique", "GERENTE"));
+        this.ur.save(new UserService("Eduardo", "FUNCIONARIO"));
         
 
         this.rr.save(new RefundRequest("Teste", 250, "12-06-2023", 1, "PENDENTE"));

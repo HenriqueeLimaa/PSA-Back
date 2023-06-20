@@ -1,5 +1,7 @@
-package app;
+package app.controller;
 
+import app.UserDto;
+import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +16,7 @@ import javax.validation.Valid;
 public class AuthController {
 
     @Autowired
-    private UserS userService;
+    private UserService userService;
 
     @GetMapping("/login")
     public String showLoginForm() {
@@ -28,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String signup(@ModelAttribute("user") @Valid UserS userS, BindingResult bindingResult) {
+    public String signup(@ModelAttribute("user") @Valid UserService userS, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "signup";
         }

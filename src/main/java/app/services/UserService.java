@@ -1,6 +1,8 @@
-package app;
+package app.services;
 
 
+import app.UserDto;
+import app.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +12,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-public class UserS implements UserDetails {
+public class UserService implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,9 +24,9 @@ public class UserS implements UserDetails {
     private String username;
 
 
-    protected UserS(){}
+    public UserService(){}
 
-    public UserS(String name, String role) {
+    public UserService(String name, String role) {
         System.out.println(role);
               System.out.println(name);
         this.name = name;
@@ -108,17 +110,17 @@ public class UserS implements UserDetails {
     private PasswordEncoder passwordEncoder;
 
     public void signup(UserDto userDto) {
-        UserS user = new UserS(userDto.getName(), userDto.getRole());
+        UserService user = new UserService(userDto.getName(), userDto.getRole());
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
         usersRepository.save(user);
     }
 
-    void setPassword(String encode) {
+    public void setPassword(String encode) {
         this.password = password;
     }
 
-    void setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
     }
 

@@ -1,5 +1,6 @@
-package app;
+package app.repository;
 
+import app.RefundRequest;
 import org.springframework.data.repository.CrudRepository;
 //import java.util.List;
 

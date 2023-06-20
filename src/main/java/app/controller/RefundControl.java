@@ -1,4 +1,6 @@
-package app;
+package app.controller;
+
+import app.RefundRequest;
 
 import java.util.ArrayList;
 
