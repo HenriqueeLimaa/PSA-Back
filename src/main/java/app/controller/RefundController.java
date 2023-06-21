@@ -29,16 +29,18 @@ class RefundController {
     }
 
     @PostMapping("/refundRequests")
-    public RefundRepository addRefund(){
-    return null;
+    public RefundRequest addRefund(@RequestBody RefundRequest refund){
+        RefundRequest r1 = new RefundRequest(refund.getDesc(), refund.getValue(), refund.getDate(), refund.getUser(), refund.getStatus());
+        System.out.println("Entrou controller" + r1.toString());
+        return rr.save(r1);
     }
 
-    public void Accept(RefundRequest r){
+
+    public void Accept(@RequestBody RefundRequest r){
         r.setStatus("ACEITO");
     }
 
     public void Refuse(RefundRequest r){
         r.setStatus("RECUSADO");
     }
-
 }
