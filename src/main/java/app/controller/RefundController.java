@@ -2,11 +2,14 @@ package app.controller;
 
 import app.RefundRequest;
 import app.repository.RefundRepository;
+import app.services.UserService;
+
 import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +26,11 @@ class RefundController {
     @GetMapping("/refundRequests")
     public List<RefundRequest> getAll(){
         return rr.findAll();
+    }
+
+    @PostMapping("/refundRequests")
+    public RefundRepository addRefund(){
+    return null;
     }
 
     public void Accept(RefundRequest r){

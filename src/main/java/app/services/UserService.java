@@ -17,7 +17,7 @@ public class UserService implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private String role;
+    private String[] role;
     private String password;
     @Column(unique = true) // Specify the column mapping
     private String username;
@@ -26,17 +26,11 @@ public class UserService implements UserDetails {
     public UserService(){}
 
 
-    public UserService(String name, String role, String username, String password) {
+    public UserService(String name, String username, String password, String... role) {
         System.out.println(role);
               System.out.println(name);
         this.name = name;
-        if(role.equals("FUNCIONARIO")) {
         this.role = role;
-        } else if(role.equals("GERENTE")) {
-        this.role = role;
-        } else {
-            throw new IllegalArgumentException("Invalid role");
-        }
         this.username = username;
         this.setPassword(password);
     }
@@ -66,7 +60,7 @@ public class UserService implements UserDetails {
         this.name = name;
     }
 
-    public String getRole(){
+    public String[] getRole(){
         return role;
     }
 
@@ -80,9 +74,9 @@ public class UserService implements UserDetails {
         return password;
     }
 
-    @Override
+    
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
@@ -110,7 +104,7 @@ public class UserService implements UserDetails {
     
 
     public void signup(UserDto userDto) {
-        UserService user = new UserService(userDto.getName(), userDto.getRole(), userDto.getUsername(), userDto.getPassword());
+        UserService user = new UserService(userDto.getName(), userDto.getUsername(), userDto.getPassword(), userDto.getRole());
         user.setUsername(userDto.getUsername());
         user.setPassword(userDto.getPassword());
     }
@@ -124,11 +118,11 @@ public class UserService implements UserDetails {
     }
 
     public UserDto toUserDto() {
-        return new UserDto(name, role, password, username);
+        return new UserDto(name, password, username, role);
     }
 
 
-    public void setRole(String role) {
+    public void setRole(String[] role) {
         this.role = role;
     }
 

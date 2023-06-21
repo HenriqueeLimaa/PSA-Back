@@ -5,14 +5,14 @@ import app.services.UserService;
 public class UserDto {
 
     private String name;
-    private String role;
+    private String[] role;
     private String password;
     private String username;
 
     public UserDto() {
     }
 
-    public UserDto(String name, String role, String password, String username) {
+    public UserDto(String name, String password, String username, String... role) {
         this.name = name;
         this.role = role;
         this.password = password;
@@ -23,7 +23,7 @@ public class UserDto {
         return name;
     }
 
-    public String getRole() {
+    public String[] getRole() {
         return role;
     }
 
@@ -32,7 +32,7 @@ public class UserDto {
         this.name = name;
     }
 
-    public void setRole(String role) {
+    public void setRole(String[] role) {
         this.role = role;
     }
 

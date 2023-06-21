@@ -25,9 +25,9 @@ public class DatabaseLoader implements CommandLineRunner{
 
     @Override
     public void run(String... strings) throws Exception{
-        this.ur.save(new UserService("Iago", "FUNCIONARIO", "iago", "123456"));
-        this.ur.save(new UserService("Henrique", "GERENTE", "henrique", "1234"));
-        this.ur.save(new UserService("Eduardo", "FUNCIONARIO", "edu", "123"));
+        this.ur.save(new UserService("Iago", "iago", "123456", "FUNCIONARIO"));
+        this.ur.save(new UserService("Henrique", "henrique", "1234", "GERENTE"));
+        this.ur.save(new UserService("Eduardo", "edu", "123", "FUNCIONARIO"));
         
 
         this.rr.save(new RefundRequest("Teste", 250, "12-06-2023", 1, "PENDENTE"));

@@ -2,7 +2,9 @@ package app;
 
 import app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -24,14 +26,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/api/**").permitAll() // Configure access for GERENTE role
-                //.antMatchers("/api/**").hasRole("FUNCIONARIO") // Configure access for FUNCIONARIO role
-                .anyRequest().authenticated()
-                .and()
+                    .antMatchers("/auth/**").permitAll()
+                    .antMatchers("/api/**").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
                 .formLogin()
-                .defaultSuccessUrl("/api", true).permitAll()
-                .and()
-                .logout();
+                    .loginProcessingUrl("/auth").permitAll(true)
+                    .defaultSuccessUrl("/api", true)
+                    .permitAll()
+                    .and()
+                .httpBasic()
+                    .and()
+                .csrf().disable()
+                .logout()
+                    .logoutSuccessUrl("/login");
     }
 
     @Override
@@ -40,4 +48,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.userDetailsService(this.userDetailsService)
 				.passwordEncoder(UserService.PASSWORD_ENCODER);
     }
+
+    @Override
+    @Bean
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+    }
+    
 }
