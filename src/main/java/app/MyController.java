@@ -15,7 +15,7 @@ public class MyController {
     }
 
     @GetMapping("/private")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('GERENTE')")
     public String privateEndpoint() {
         return "Private endpoint";
     }

@@ -10,6 +10,4 @@ public interface UsersRepository extends CrudRepository<UserService, Integer>{
 
     UserService findByUsername(String username);
 
-    //List<UserS> findByCargo(Cargo cargo);
-
 }

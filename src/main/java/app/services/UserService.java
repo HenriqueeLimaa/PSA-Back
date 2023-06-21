@@ -2,10 +2,9 @@ package app.services;
 
 
 import app.UserDto;
-import app.repository.UsersRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
@@ -23,10 +22,11 @@ public class UserService implements UserDetails {
     @Column(unique = true) // Specify the column mapping
     private String username;
 
-
+    
     public UserService(){}
 
-    public UserService(String name, String role) {
+
+    public UserService(String name, String role, String username, String password) {
         System.out.println(role);
               System.out.println(name);
         this.name = name;
@@ -37,6 +37,8 @@ public class UserService implements UserDetails {
         } else {
             throw new IllegalArgumentException("Invalid role");
         }
+        this.username = username;
+        this.setPassword(password);
     }
 
     @Override
@@ -85,40 +87,37 @@ public class UserService implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
-    @Autowired
-    private UsersRepository usersRepository;
+    public static final PasswordEncoder PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    
 
     public void signup(UserDto userDto) {
-        UserService user = new UserService(userDto.getName(), userDto.getRole());
+        UserService user = new UserService(userDto.getName(), userDto.getRole(), userDto.getUsername(), userDto.getPassword());
         user.setUsername(userDto.getUsername());
-        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        usersRepository.save(user);
+        user.setPassword(userDto.getPassword());
     }
 
-    public void setPassword(String encode) {
-        this.password = password;
-    }
+    public void setPassword(String password) { 
+		this.password = PASSWORD_ENCODER.encode(password);
+	}
 
     public void setUsername(String username) {
         this.username = username;

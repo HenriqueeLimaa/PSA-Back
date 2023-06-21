@@ -16,9 +16,9 @@ class UsersController {
         this.ur = ur;
     }
 
-    @PostMapping("/userSes")
+    @PostMapping("/userServices")
     UserService newUserS(@RequestBody UserService newUserS){
-        UserService u1 = new UserService(newUserS.getName(), newUserS.getRole());
+        UserService u1 = new UserService(newUserS.getName(), newUserS.getRole(), newUserS.getUsername(), newUserS.getPassword());
         System.out.println("Entrou controller" + newUserS.toString());
         return ur.save(u1);
         

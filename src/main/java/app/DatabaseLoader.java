@@ -10,14 +10,14 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class Application implements CommandLineRunner{
+public class DatabaseLoader implements CommandLineRunner{
 
     private final UsersRepository ur;
 
     private final RefundRepository rr;
 
     @Autowired
-    public Application(UsersRepository ur, RefundRepository rr){
+    public DatabaseLoader(UsersRepository ur, RefundRepository rr){
         this.ur = ur;
         this.rr = rr;
     }
@@ -25,9 +25,9 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... strings) throws Exception{
-        this.ur.save(new UserService("Iago", "FUNCIONARIO"));
-        this.ur.save(new UserService("Henrique", "GERENTE"));
-        this.ur.save(new UserService("Eduardo", "FUNCIONARIO"));
+        this.ur.save(new UserService("Iago", "FUNCIONARIO", "iago", "123456"));
+        this.ur.save(new UserService("Henrique", "GERENTE", "henrique", "1234"));
+        this.ur.save(new UserService("Eduardo", "FUNCIONARIO", "edu", "123"));
         
 
         this.rr.save(new RefundRequest("Teste", 250, "12-06-2023", 1, "PENDENTE"));
