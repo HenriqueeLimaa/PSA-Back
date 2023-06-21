@@ -8,7 +8,9 @@ import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,9 +37,11 @@ class RefundController {
         return rr.save(r1);
     }
 
-
-    public void Accept(@RequestBody RefundRequest r){
-        r.setStatus("ACEITO");
+    @PutMapping("/refundRequests/{id}")
+    public void update(@PathVariable int id, @RequestBody RefundRequest r){
+        RefundRequest r1 = rr.findById(id);
+        r1.setStatus(r.getStatus());
+        rr.save(r1);
     }
 
     public void Refuse(RefundRequest r){
