@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
-//@RequestMapping("/api")
+@RequestMapping("/api")
 @RestController
 class RefundController {
     private final RefundRepository rr;
