@@ -14,7 +14,7 @@ public class UserDto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private String[] role;
+    private String role;
     private String password;
     @Column(unique = true) // Specify the column mapping
     private String username;
@@ -22,7 +22,7 @@ public class UserDto {
     public UserDto() {
     }
 
-    public UserDto(String name, String username, String password, String... role) {
+    public UserDto(String name, String username, String password, String role) {
         this.name = name;
         this.role = role;
         this.password = password;
@@ -33,7 +33,7 @@ public class UserDto {
         return name;
     }
 
-    public String[] getRole() {
+    public String getRole() {
         return role;
     }
 
@@ -42,7 +42,7 @@ public class UserDto {
         this.name = name;
     }
 
-    public void setRole(String[] role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

@@ -15,7 +15,7 @@ public class UserService implements UserDetails {
 
     private int id;
     private String name;
-    private String[] role;
+    private String role;
     @JsonIgnore
     private String password;
     private String username;
@@ -24,7 +24,7 @@ public class UserService implements UserDetails {
     public UserService(){}
 
 
-    public UserService(String name, String username, String password, String... role) {
+    public UserService(String name, String username, String password, String role) {
         System.out.println(role);
               System.out.println(name);
         this.name = name;
@@ -58,7 +58,7 @@ public class UserService implements UserDetails {
         this.name = name;
     }
 
-    public String[] getRole(){
+    public String getRole(){
         return role;
     }
 
@@ -127,7 +127,7 @@ public class UserService implements UserDetails {
     }
 
 
-    public void setRole(String[] role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
