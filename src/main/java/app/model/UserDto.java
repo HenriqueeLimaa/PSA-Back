@@ -1,18 +1,28 @@
-package app;
+package app.model;
 
 import app.services.UserService;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+@Entity
 public class UserDto {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
     private String[] role;
     private String password;
+    @Column(unique = true) // Specify the column mapping
     private String username;
 
     public UserDto() {
     }
 
-    public UserDto(String name, String password, String username, String... role) {
+    public UserDto(String name, String username, String password, String... role) {
         this.name = name;
         this.role = role;
         this.password = password;

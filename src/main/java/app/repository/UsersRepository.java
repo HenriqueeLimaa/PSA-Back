@@ -1,18 +1,21 @@
 package app.repository;
 
-import app.services.UserService;
-
+import app.model.UserDto;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-
-public interface UsersRepository extends CrudRepository<UserService, Integer>{
+@Repository
+public interface UsersRepository extends CrudRepository<UserDto, Integer>{
     
-    UserService findById(int id);
+    UserDto findById(int id);
+    
+    Optional<UserDto> findByUsername(String username);
 
-    UserService findByUsername(String username);
+    boolean existsByUsername(String username);
 
-    List<UserService> findAll();
+    List<UserDto> findAll();
 
 }

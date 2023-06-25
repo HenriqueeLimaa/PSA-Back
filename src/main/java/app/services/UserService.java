@@ -1,25 +1,23 @@
 package app.services;
 
 
-import app.UserDto;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import app.model.UserDto;
 import java.util.Collection;
 
-@Entity
 public class UserService implements UserDetails {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
     private String[] role;
+    @JsonIgnore
     private String password;
-    @Column(unique = true) // Specify the column mapping
     private String username;
 
     
@@ -64,6 +62,13 @@ public class UserService implements UserDetails {
         return role;
     }
 
+    public static UserService build(UserDto user) {
+
+    return new UserService(    user.getName(),
+                               user.getUsername(),
+                               user.getPassword(), 
+                               user.getRole());
+  }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

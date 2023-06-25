@@ -1,10 +1,10 @@
-package app;
+package app.model;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity
 public class RefundRequest {
@@ -15,16 +15,16 @@ public class RefundRequest {
     private String description;
     private double value;
     private String date;
-    private int uid;
+    private int userid;
     private String status;
 
     protected RefundRequest(){}
 
-    public RefundRequest(String description, double value, String date, int uid,String status ) {
+    public RefundRequest(String description, double value, String date, int userid, String status ) {
         this.description = description;
         this.value = value;
         this.date = date;
-        this.uid = uid;
+        this.userid = userid;
         this.status = status;
     }
 
@@ -64,8 +64,8 @@ public class RefundRequest {
         return status;
     }
 
-    public int getUser(){
-        return uid;
+    public int getUserId(){
+        return userid;
     }
 
     public void setStatus(String st){

@@ -1,8 +1,7 @@
 package app.controller;
 
-import app.RefundRequest;
+import app.model.RefundRequest;
 import app.repository.RefundRepository;
-import app.services.UserService;
 
 import java.util.List;
 
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
-@RequestMapping("/api")
+//@RequestMapping("/api")
 @RestController
 class RefundController {
     private final RefundRepository rr;
@@ -32,8 +31,8 @@ class RefundController {
 
     @PostMapping("/refundRequests")
     public RefundRequest addRefund(@RequestBody RefundRequest refund){
-        RefundRequest r1 = new RefundRequest(refund.getDesc(), refund.getValue(), refund.getDate(), refund.getUser(), refund.getStatus());
-        System.out.println("Entrou controller" + r1.toString());
+        RefundRequest r1 = new RefundRequest(refund.getDesc(), refund.getValue(), refund.getDate(), refund.getUserId(), refund.getStatus());
+        System.out.println("Entrou controller" + refund.getUserId());
         return rr.save(r1);
     }
 
@@ -44,7 +43,4 @@ class RefundController {
         rr.save(r1);
     }
 
-    public void Refuse(RefundRequest r){
-        r.setStatus("RECUSADO");
-    }
 }

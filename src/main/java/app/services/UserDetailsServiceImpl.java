@@ -1,31 +1,28 @@
 package app.services;
 
 import app.repository.UsersRepository;
+import app.model.UserDto;
 
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Component
+
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+  @Autowired
+  UsersRepository userRepository;
 
-    private final UsersRepository usersRepository;
+  @Override
+  @Transactional
+  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    UserDto user = userRepository.findByUsername(username)
+        .orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
-    public UserDetailsServiceImpl(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
+    return UserService.build(user);
+  }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserService user = usersRepository.findByUsername(username);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found");
-        }
-        return new User(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList(user.getRole()));
-    }
-
- 
 }
