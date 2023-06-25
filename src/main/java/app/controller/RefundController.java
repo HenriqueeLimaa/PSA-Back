@@ -31,8 +31,8 @@ class RefundController {
 
     @PostMapping("/refundRequests")
     public RefundRequest addRefund(@RequestBody RefundRequest refund){
+                System.out.println("Entrou controller" + refund.getUserId());
         RefundRequest r1 = new RefundRequest(refund.getDesc(), refund.getValue(), refund.getDate(), refund.getUserId(), refund.getStatus());
-        System.out.println("Entrou controller" + refund.getUserId());
         return rr.save(r1);
     }
 

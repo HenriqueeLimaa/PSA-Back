@@ -15,12 +15,12 @@ public class RefundRequest {
     private String description;
     private double value;
     private String date;
-    private int userid;
+    private long userid;
     private String status;
 
     protected RefundRequest(){}
 
-    public RefundRequest(String description, double value, String date, int userid, String status ) {
+    public RefundRequest(String description, double value, String date, long userid, String status ) {
         this.description = description;
         this.value = value;
         this.date = date;
@@ -64,8 +64,12 @@ public class RefundRequest {
         return status;
     }
 
-    public int getUserId(){
+    public long getUserId(){
         return userid;
+    }
+
+    public void setUserId(long userid){
+        this.userid = userid;
     }
 
     public void setStatus(String st){
