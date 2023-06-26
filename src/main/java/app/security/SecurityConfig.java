@@ -90,7 +90,8 @@ public class SecurityConfig { // extends WebSecurityConfigurerAdapter {
         .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
         .authorizeHttpRequests(auth -> 
           auth.requestMatchers("/api/auth/**").permitAll()
-              .requestMatchers("/api/test/**").permitAll()
+              .requestMatchers("/api/refundRequests/**").permitAll()
+              .requestMatchers("/api/userServices/**").permitAll()
               .anyRequest().authenticated()
         );
     
