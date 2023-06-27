@@ -12,7 +12,7 @@ public class UserDto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
     private String name;
     private String role;
     private String password;

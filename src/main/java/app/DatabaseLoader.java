@@ -29,9 +29,12 @@ public class DatabaseLoader implements CommandLineRunner{
         this.ur.save(new UserDto("Eduardo", "edu", "123", "FUNCIONARIO"));
         
 
-        this.rr.save(new RefundRequest("Teste", 250, "12-06-2023", 1, "PENDENTE"));
-        this.rr.save(new RefundRequest("Teste 2", 250, "13-06-2023", 3, "PENDENTE"));
-        this.rr.save(new RefundRequest("Teste 3", 250, "12-06-2023", 3, "PENDENTE"));
+        this.rr.save(new RefundRequest("Teste", 250, "12-06-2023", 1, "ACEITO"));
+        this.rr.save(new RefundRequest("Teste 2", 250, "13-06-2023", 3, "RECUSADO"));
+        this.rr.save(new RefundRequest("Teste 3", 250, "12-06-2023", 3, "ACEITO"));
+        this.rr.save(new RefundRequest("Teste 4", 250, "12-06-2023", 1, "PENDENTE"));
+        this.rr.save(new RefundRequest("Teste 5", 250, "13-06-2023", 3, "PENDENTE"));
+        this.rr.save(new RefundRequest("Teste 6", 250, "12-06-2023", 3, "PENDENTE"));
 
     }
 

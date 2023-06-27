@@ -13,7 +13,7 @@ import java.util.Collection;
 
 public class UserService implements UserDetails {
 
-    private int id;
+    private long id;
     private String name;
     private String role;
     @JsonIgnore
@@ -42,7 +42,7 @@ public class UserService implements UserDetails {
                 "\n}";
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

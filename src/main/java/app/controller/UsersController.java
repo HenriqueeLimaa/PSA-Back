@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @CrossOrigin(origins= {"*"}, maxAge = 4800, allowCredentials = "false" )
 @RequestMapping("/api")
@@ -34,5 +36,5 @@ class UsersController {
         UserDto u1 = new UserDto(user.getName(), user.getUsername(), user.getPassword(), user.getRole());
         System.out.println("Entrou controller" + user.toString());
         return ur.save(u1); 
-    }
+    }    
 }

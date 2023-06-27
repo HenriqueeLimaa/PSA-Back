@@ -92,6 +92,7 @@ public class SecurityConfig { // extends WebSecurityConfigurerAdapter {
           auth.requestMatchers("/api/auth/**").permitAll()
               .requestMatchers("/api/refundRequests/**").permitAll()
               .requestMatchers("/api/userServices/**").permitAll()
+              .requestMatchers("/api/refundReport/**").permitAll()
               .anyRequest().authenticated()
         );
     

@@ -10,7 +10,9 @@ import app.model.RefundRequest;
 @Repository
 public interface RefundRepository extends CrudRepository<RefundRequest, Integer>{
     
-    RefundRequest findById(int id);
+    RefundRequest findById(long id);
+
+    List<RefundRequest> findByStatus(String status);
 
     List<RefundRequest> findAll();
 }
